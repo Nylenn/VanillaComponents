@@ -1,0 +1,77 @@
+.wrapper {
+    display: flex;
+    width: var(--width);
+    height: var(--height);
+    padding: calc(var(--width) * 0.05);
+    border-radius: var(--width);
+    background-color: #020755;
+    /* Night mode color */
+    cursor: pointer;
+    transition: all 0.25s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Moon */
+.wrapper::before {
+    content: '';
+    position: absolute;
+    top: calc(var(--width) / 10);
+    right: calc(var(--width) / 7);
+    width: calc(var(--width) / 5);
+    height: calc(var(--width) / 5);
+    background-color: #e3df8e;
+    border-radius: 50%;
+    transition: all 0.25s ease-in-out;
+    z-index: 1;
+}
+
+/* Stars */
+.wrapper::after {
+    content: '';
+    position: absolute;
+    top: calc(var(--width) / 12);
+    right: calc(var(--width) / 2.5);
+    width: calc(var(--width) / 15);
+    height: calc(var(--width) / 15);
+    background-color: #efedbb;
+    border-radius: 50%;
+    box-shadow:
+        calc(var(--width) / 6 * -1) calc(var(--width) / 25) 0 0 #efedbb,
+        calc(var(--width) / 10 * -1) calc(var(--width) / 5) 0 0 #efedbb;
+    opacity: 1;
+    transition: opacity 0.25s ease-in-out;
+    z-index: 1;
+}
+
+.wrapper.toggled {
+    background-color: rgb(16, 207, 255);
+}
+
+/* Sun */
+.wrapper.toggled::before {
+    background-color: #FFD700;
+    top: calc(var(--width) / 12);
+    right: calc(var(--width) / 1.5);
+    width: calc(var(--width) / 4.25);
+    height: calc(var(--width) / 4.25);
+    box-shadow: none;
+}
+
+.wrapper.toggled::after {
+    opacity: 0;
+}
+
+.ball {
+    border-radius: 50%;
+    background-color: rgb(255, 255, 255);
+    height: var(--height);
+    width: var(--height);
+    margin-left: 0;
+    transition: margin-left 0.25s ease-in-out;
+    z-index: 2;
+}
+
+.wrapper.toggled .ball {
+    margin-left: calc(var(--width) - var(--height));
+}
